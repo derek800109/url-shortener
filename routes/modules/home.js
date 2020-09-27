@@ -14,4 +14,12 @@ Router.get('/', (req, res) => {
 
 //----------------------------------------------------------------------------------
 
+Router.post('/', (req, res) => {
+  console.log('This post is used to create outputURL')
+
+  res.render('index')
+})
+
+//----------------------------------------------------------------------------------
+
 module.exports = Router
