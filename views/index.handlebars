@@ -19,10 +19,29 @@
       {{#if showShortenURL}}
       <div class="d-flex flex-column">
         <h3>Success! Please use this link:</h3>
-        <a href="{{shortenURL}}" target="_blank">{{shortenURL}}</a>
-        <button type="button" class="btn btn-primary">Copy</button>
+        {{!-- <input type="text" id="copy" value="{{shortenURL}}" disabled> --}}
+        <input type="text" id="copy" value="{{shortenURL}}">
+        <button type="button" class="btn btn-primary" onclick="copy_to_clipboard('copy')">Copy</button>
       </div>
       {{/if}}
     </div>
   </div>
 </div>
+
+<script>
+  function copy_to_clipboard(id) {
+    /* Get the text field */
+    const copyText = document.getElementById(id);
+    console.log(copyText.value)
+
+    /* Select the text field */
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+    /* Copy the text inside the text field */
+    document.execCommand("copy");
+
+    /* Alert the copied text */
+    alert("Copied the text: " + copyText.value);
+  }
+</script>
