@@ -2,6 +2,7 @@ const express = require('express')
 
 const random_alphabets = require('../../utilities/random_alphabets')
 const UrlShortener = require('../../models/urlShortner')
+const urlShortner = require('../../models/urlShortner')
 
 //----------------------------------------------------------------------------------
 
@@ -17,6 +18,10 @@ Router.get('/', (req, res) => {
 
 //----------------------------------------------------------------------------------
 
+function get_shorten_url(req, shortenPath) {
+  return `${req.protocol}${req.hostname}:${req.po}/${shortenPath}`
+}
+
 Router.post('/', (req, res) => {
   console.log('This post is used to create outputURL')
   const inputURL = req.body.inputURL
@@ -27,8 +32,6 @@ Router.post('/', (req, res) => {
     .then(urlShorteners => {
       let shortenPath = ''
       let urlShortener = urlShorteners.find(doc => doc.inputURL === inputURL)
-      console.log('urlShortener', urlShortener)
-      console.log('urlShorteners', urlShorteners)
 
       if (urlShortener === undefined) {
         // create a new ducument
@@ -45,7 +48,8 @@ Router.post('/', (req, res) => {
         console.log('found')
       }
 
-      const shortenURL = `/${shortenPath}`
+      // const shortenURL = get_shorten_url(req, shortenPath)
+      const shortenURL = `${req.protocol}://${req.get('host')}/${shortenPath}`
 
       res.render('index', { shortenURL, showShortenURL: true })
     })
@@ -54,4 +58,22 @@ Router.post('/', (req, res) => {
 
 //----------------------------------------------------------------------------------
 
+Router.get('/:shortenPath', (req, res) => {
+  const shortenPath = req.params.shortenPath
+
+  UrlShortener
+    .findOne({ shortenPath })
+    .lean()
+    .then(urlShortner => {
+      const inputURL = urlShortner.inputURL
+      console.log(inputURL)
+      res.redirect(301, inputURL)
+    })
+    .catch(error => console.error(error))
+})
+
+//----------------------------------------------------------------------------------
+
 module.exports = Router
+
+// creat route to get new created shorten url 
