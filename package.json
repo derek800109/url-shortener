@@ -1,12 +1,12 @@
 {
   "name": "url-shortener",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node models/urlShortner.js"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +17,14 @@
     "express-handlebars": "^5.1.0",
     "mongoose": "^5.10.7",
     "nodemon": "^2.0.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derek800109/url-shortener.git"
+  },
+  "bugs": {
+    "url": "https://github.com/derek800109/url-shortener/issues"
+  },
+  "homepage": "https://github.com/derek800109/url-shortener#readme",
+  "description": ""
 }

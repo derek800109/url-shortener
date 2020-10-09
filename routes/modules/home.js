@@ -65,8 +65,12 @@ Router.get('/:shortenPath', (req, res) => {
     .findOne({ shortenPath })
     .lean()
     .then(urlShortner => {
+      if (urlShortner === null) {
+        return res.redirect('/')
+      }
+
       const inputURL = urlShortner.inputURL
-      console.log(inputURL)
+      // 301 is an express status code to navigate to a new url rather than append sentence to postfix of host
       res.redirect(301, inputURL)
     })
     .catch(error => console.error(error))
