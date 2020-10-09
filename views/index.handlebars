@@ -10,10 +10,9 @@
       {{#unless showShortenURL}}
       <form class="d-flex flex-column align-items-center" action="/" method="POST">
         <div class="form-group">
-          <input type="url" class="form-control" name="inputURL" placeholder="Input URL here" size="60"
-            value="https://www.google.com/">
+          <input type="url" class="form-control" name="inputURL" placeholder="Input URL here" size="60">
         </div>
-        <button type="submit" class="btn btn-primary">Shorten</button>
+        <button type="submit" class="btn btn-primary" onclick="check_input('inputURL')">Shorten</button>
       </form>
       {{/unless}}
       {{#if showShortenURL}}
@@ -29,6 +28,15 @@
 </div>
 
 <script>
+  function check_input(name) {
+    const elements = document.getElementsByName(name)
+    const value = elements[0].value
+
+    if (value === '') {
+      alert("Please input valid URL");
+    }
+  }
+
   function copy_to_clipboard(id) {
     /* Get the text field */
     const copyText = document.getElementById(id);

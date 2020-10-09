@@ -25,6 +25,10 @@ function get_shorten_url(req, shortenPath) {
 Router.post('/', (req, res) => {
   console.log('This post is used to create outputURL')
   const inputURL = req.body.inputURL
+  if (inputURL === '') {
+    return res.redirect('/')
+  }
+  console.log(inputURL)
 
   UrlShortener
     .find()
