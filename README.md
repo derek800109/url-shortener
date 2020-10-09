@@ -1,5 +1,7 @@
 # Recap
-A restaurant website built with
+
+短網址產生器
+
 * Node.js
 * Express
 * Express-handlebars
@@ -10,16 +12,12 @@ A restaurant website built with
 * and many other Javascript framework
 
 ## Features
-使用者可以新增一家餐廳
-使用者可以瀏覽一家餐廳的詳細資訊
-使用者可以瀏覽全部所有餐廳
-使用者可以修改一家餐廳的資訊
-使用者可以刪除一家餐廳
+首頁畫面上有一個表單，使用者可以在表單輸入原始網址，如 https://www.google.com；送出表單之後，畫面會回傳格式化後的短網址，如 https://your-project-name.herokuapp.com/6y7UP
 
 ## Getting Started
 Clone repository to your local computer
 ```
-$ git clone https://github.com/derek800109/restaurant_list_crud.git
+$ git clone https://https://github.com/derek800109/url-shortener.git
 ```
 Install by [npm](https://www.npmjs.com/)
 ```
